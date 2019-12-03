@@ -37,9 +37,19 @@ void Graph::dijkstra() { // 5 pts
 //Step 1:
 //set the distance to the starting vertex to 0 and set
 //the visited array to true for the start index;
+	distances[start]=0;
+	visited[start]=true;
 //Step 2:
 // Initialize the distances to the cost of going to each node from the
 //start index (this is done using the adjacency matrix)
+	for(int i=0;i<numOfVerts;i++){
+		if(i==start){
+
+		}
+		else{
+			distances[i]=adjMatrix[start][i];
+		}
+	}
 //Step 3:
 //loop until every vertex has been visited, calling the methods
 //minDistance to find the next unvisited vertex with the minimum
@@ -57,11 +67,16 @@ void Graph::setDistances(int latestVert) { //8 pts
 	//vertex's index number
 }
 int Graph::minDistance() { //8 pts
-	//This method finds the next unvisited vertex with the minimum
-//distance.
-//Once the minimum is found (along with its index in the distance
-//array), the visited array at that index is set to True and that index is
-//returned from this method.
+	int min=NULL;
+		for(int i=0;i<numOfVerts;i++){
+			if(visited[i]==false){
+				if(min==NULL || distances[i]<min){
+					min=i;
+				}
+			}
+		}
+		visited[min]=true;
+		return min;
 }
 //This method prints out the final path from the starting vertex to the end vertex,
 //which is the index passed into this method
