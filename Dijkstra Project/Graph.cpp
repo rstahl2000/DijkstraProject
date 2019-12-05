@@ -65,6 +65,12 @@ void Graph::setDistances(int latestVert) { //8 pts
 	//minimum). If the minimum is through the recently visited vertex,
 	//then update the previous array so that it holds the latest visited
 	//vertex's index number
+	for(int i=0;i<numOfVerts;i++){
+		if(distances[i]>distances[latestVert]+adjMatrix[latestVert][i]){
+			distances[i]=distances[latestVert]+adjMatrix[latestVert][i];
+			prev=latestVert;
+		}
+	}
 }
 int Graph::minDistance() { //8 pts
 	int min=NULL;
