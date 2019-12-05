@@ -56,6 +56,19 @@ void Graph::dijkstra() { // 5 pts
 //distance, and then calling setDistances method for every vertex
 //to update distances for the unvisited vertices. (I called printInfoSoFar()
 //in this loop to see the progress of the algorithm)
+	bool done=true;
+	int temp;
+	while(done){
+		done=false;
+		temp=minDistance();
+		setDistances(temp);
+		visited[temp]=true;
+		for(int i=0;i<numOfVerts;i++){
+			if(visited[temp]==false){
+				done=true;
+			}
+		}
+	}
 }
 void Graph::setDistances(int latestVert) { //8 pts
 	// This method updates the distances array with the costs being
@@ -68,7 +81,7 @@ void Graph::setDistances(int latestVert) { //8 pts
 	for(int i=0;i<numOfVerts;i++){
 		if(distances[i]>distances[latestVert]+adjMatrix[latestVert][i]){
 			distances[i]=distances[latestVert]+adjMatrix[latestVert][i];
-			prev=latestVert;
+			prev[i]=latestVert;
 		}
 	}
 }
